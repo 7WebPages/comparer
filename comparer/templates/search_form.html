@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="widget">
+    <form action="{{ request.path }}" method="get"  class="form-horizontal">
+        <div class="widget-content">
+                {{ filter.form.media }}
+                {% for key, val in request.GET.items %}
+                    {% if key not in filter.form.fields.keys and 'date_range' not in key and 'page' not in key %}
+                        <input type="hidden" name="{{ key }}" value="{{ val }}">
+                    {% endif %}
+                {% endfor %}
+                <div class="row-fluid">
+                    {{ filter.form.as_div }}
+                </div>
+        </div>
+        <div class="widget-footer bordered">
+            <div class="form-actions reset-margins">
+                <button type="submit" class="btn btn-primary"><i class="icon-search"></i> {% trans "Search" %}</button>
+                <a href="{{ request.path }}" class="btn btn-link">{% trans "Reset Filter" %}</a>
+            </div>
+        </div>
+    </form>
+</div>

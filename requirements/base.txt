@@ -1,0 +1,23 @@
+Django==1.8
+bpython==0.13
+Pygments==1.6
+logutils==0.3.3
+django-extensions
+webtest
+django-webtest
+
+
+django-picklefield
+django-storages
+boto
+django-autofixture
+
+sorl-thumbnail
+
+#model_mommy
+https://github.com/vandersonmota/model_mommy/archive/master.zip
+
+# https://github.com/maraujop/django-crispy-forms/issues/263
+#django-crispy-forms
+https://github.com/maraujop/django-crispy-forms/archive/dev.zip
+

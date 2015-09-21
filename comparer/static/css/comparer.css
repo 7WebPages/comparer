@@ -1,0 +1,111 @@
+/*! project specific CSS goes here. */
+
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+img{
+  max-width: 100%;
+}
+
+/* fix for datetime picker */
+.controls {
+    position: relative;
+}
+
+/* fix for select2 and bootstrap */
+.select2-container {
+  padding: 0px;
+  border-width: 0px;
+}
+.select2-container .select2-choice {
+  height: 38px;
+  line-height: 38px;
+}
+
+.search-block .form-actions{
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+
+/* List view */
+
+.glyphicon { margin-right:5px; }
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    /*float: left;*/
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}
+
+/**
+ * Centered table
+ */
+table.table.centered
+{
+    margin: 0px auto;
+}
+
+.no-border td, .no-border th {
+    border: none!important;
+}
+/* end of item list */
+
+.bricks{
+ -moz-column-width: 18em;
+ -webkit-column-width: 18em;
+ -moz-column-gap: 1em;
+ -webkit-column-gap:1em; 
+ box-sizing:  border-box !important;
+}
+
+.brick-item {
+ display: inline-block;
+ padding:  .25rem;
+ width:  100%; 
+ box-sizing:  border-box !important;
+ margin-bottom: 20px;
+}
+
+.search-block input[type=submit]{
+    margin-top: 21px;
+}
+
+.search-block .help-block{
+    display: none;
+}

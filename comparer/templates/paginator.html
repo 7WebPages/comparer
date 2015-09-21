@@ -1,0 +1,15 @@
+{% if is_paginated %}
+        <ul class="pagination pagination-centered">
+            {% if page_obj.has_previous %}
+                <li><a href="?{{ page_obj.previous_page_number.querystring }}"><</a></li>
+            {% endif %}
+
+            {% for page in page_obj.pages %}
+                <li {% if page_obj.number == page %} class="active" {% endif %}>{% if page.querystring %}<a href="?{{page.querystring}}">{{page}}</a>{% else %}<a href="javascriptip:void(0)">...</a>{% endif %}</li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?{{ page_obj.next_page_number.querystring }}">></a></li>
+            {% endif %}
+        </ul>
+{% endif %}
