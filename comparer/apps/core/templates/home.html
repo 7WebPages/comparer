@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}Image Comparer Demo{% endblock title %}
 
@@ -13,21 +14,28 @@
 </div>
 
 {% if first_image and second_image %}
-<div class="panel panel-info">
+<div class="panel panel-info results">
     <div class="row">
         <div class="col-sm-6">
-            <b>{{ first_image.image }}</b>
+            <img src="{% get_media_prefix %}{{ first_image.image }}">
+        </div>  
+
+        <div class="col-sm-6">
+            <img src="{% get_media_prefix %}{{ second_image.image }}">
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
             <small>{{ first_image.score }}</small>
         </div>  
 
         <div class="col-sm-6">
-            <b>{{ second_image.image }}</b>
             <small>{{ second_image.score }}</small>
         </div>  
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <h3>Difference Score: {{diff_score}}</h3>
+            <h3>Difference Score: {{diff_score}}<br><small>out of 256</small></h3>
         </div>  
     </div>
 </div>

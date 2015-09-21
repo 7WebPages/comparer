@@ -1,7 +1,5 @@
-from django.utils.translation import ugettext as _
-from django.http import Http404
-from django.core.urlresolvers import reverse
-from django.contrib import messages
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 from django.views.generic.edit import FormView
 
 from core.forms import ComparerForm
@@ -20,23 +18,32 @@ class HomeView(FormView):
         first_image = form.cleaned_data['first_image']
         second_image = form.cleaned_data['second_image']
 
+        first_image_url = self.save_image(first_image)
+        second_image_url = self.save_image(second_image)
+
         first_image_score = Hash(first_image).ahash()
         second_image_score = Hash(second_image).ahash()
 
         data['first_image'] = {
-            'image': first_image,
+            'image': first_image_url,
             'score': first_image_score,
             'score_decimal': int(first_image_score, base=2)
         }
 
         data['second_image'] = {
-            'image': second_image,
+            'image': second_image_url,
             'score': second_image_score,
             'score_decimal': int(second_image_score, base=2)
         }
 
-        diff = int(second_image_score, base=2) - int(first_image_score, base=2)
-        diff = abs(diff)
+        diff = 0
+        for i in range(len(second_image_score)):
+            if first_image_score[i] != second_image_score[i]:
+                diff += 1
         data['diff_score'] = diff 
 
         return self.render_to_response(data)
+
+    def save_image(self, image):
+        url = default_storage.save(image.name, ContentFile(image.read()))
+        return url

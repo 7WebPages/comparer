@@ -113,3 +113,12 @@ table.table.centered
 .search-block .help-block{
     display: none;
 }
+
+.results img{
+    max-width: 100%;
+    display: flex;
+    margin: auto;
+}
+.results{
+    padding: 15px;
+}
