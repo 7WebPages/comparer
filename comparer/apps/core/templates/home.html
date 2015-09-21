@@ -14,15 +14,22 @@
 
 {% if first_image and second_image %}
 <div class="panel panel-info">
+    <div class="row">
+        <div class="col-sm-6">
+            <b>{{ first_image.image }}</b>
+            <small>{{ first_image.score }}</small>
+        </div>  
 
-    <b>{{ first_image }}</b>
-
-    {{ first_image_score }}
-
-    <br/>
-    <b>{{ second_image }}</b>
-
-    {{ second_image_score }}
+        <div class="col-sm-6">
+            <b>{{ second_image.image }}</b>
+            <small>{{ second_image.score }}</small>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Difference Score: {{diff_score}}</h3>
+        </div>  
+    </div>
 </div>
 {% endif %}
 

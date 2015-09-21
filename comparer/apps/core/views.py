@@ -20,12 +20,23 @@ class HomeView(FormView):
         first_image = form.cleaned_data['first_image']
         second_image = form.cleaned_data['second_image']
 
-        data['first_image'] = first_image
-        data['second_image'] = second_image
+        first_image_score = Hash(first_image).ahash()
+        second_image_score = Hash(second_image).ahash()
 
-        data['first_image_score'] = Hash(first_image).ahash()
-        data['second_image_score'] = Hash(second_image).ahash()
+        data['first_image'] = {
+            'image': first_image,
+            'score': first_image_score,
+            'score_decimal': int(first_image_score, base=2)
+        }
 
-        data['diff_score'] = 1 
+        data['second_image'] = {
+            'image': second_image,
+            'score': second_image_score,
+            'score_decimal': int(second_image_score, base=2)
+        }
+
+        diff = int(second_image_score, base=2) - int(first_image_score, base=2)
+        diff = abs(diff)
+        data['diff_score'] = diff 
 
         return self.render_to_response(data)
