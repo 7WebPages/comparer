@@ -8,6 +8,10 @@ django-webtest
 
 Pillow
 
+numpy
+scipy
+scikit-learn
+
 django-picklefield
 django-storages
 boto

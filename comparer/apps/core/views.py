@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.views.generic.edit import FormView
@@ -21,8 +22,18 @@ class HomeView(FormView):
         first_image_url = self.save_image(first_image)
         second_image_url = self.save_image(second_image)
 
-        first_image_score = Hash(first_image).ahash()
-        second_image_score = Hash(second_image).ahash()
+        first_image_hasher = Hash(first_image)
+        second_image_hasher = Hash(second_image)
+
+        first_image_score = first_image_hasher.ahash()
+        second_image_score = second_image_hasher.ahash()
+
+        s1 =  first_image_hasher.calc_scores()
+        s2 = second_image_hasher.calc_scores()
+        vector = []
+        for h1, h2 in zip(s1, s2):
+            vector.append(Hash.calc_difference(h1[1], h2[1]))
+        data['is_duplicates'] = Hash.predict(vector)
 
         data['first_image'] = {
             'image': first_image_url,
@@ -40,7 +51,7 @@ class HomeView(FormView):
         for i in range(len(second_image_score)):
             if first_image_score[i] != second_image_score[i]:
                 diff += 1
-        data['diff_score'] = diff 
+        data['diff_score'] = diff
 
         return self.render_to_response(data)
 
